@@ -44,22 +44,17 @@ public enum NodeElements implements IEnumDecodable<String> {
 	TXPOWER("TxPower"),
 	/** Error */
 	ERROR("Error");
-	
-	
 
-    /**　コード値 */ 
+	/** コード値 */
 	private String code;
 
 	/** コードデコーダ */
-	private static final EnumDecodeUtil<String, NodeElements> decoder = EnumDecodeUtil
-			.create(values());
+	private static final EnumDecodeUtil<String, NodeElements> decoder = EnumDecodeUtil.create(values());
 
 	/**
-	 *
 	 * コンストラクタ
 	 *
-	 * @param code
-	 *            コード値
+	 * @param code コード値
 	 */
 	private NodeElements(String code) {
 		this.code = code;
@@ -69,8 +64,7 @@ public enum NodeElements implements IEnumDecodable<String> {
 	 *
 	 * コード値からコード定義を取得する
 	 *
-	 * @param code
-	 *            コード値
+	 * @param code コード値
 	 * @return コード定義
 	 */
 	public static NodeElements decode(String code) {
@@ -86,5 +80,3 @@ public enum NodeElements implements IEnumDecodable<String> {
 		return code;
 	}
 }
-
-

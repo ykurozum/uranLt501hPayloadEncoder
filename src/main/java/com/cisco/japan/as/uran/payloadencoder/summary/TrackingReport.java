@@ -1,5 +1,8 @@
 package com.cisco.japan.as.uran.payloadencoder.summary;
 
+import java.util.Date;
+
+import com.cisco.japan.as.uran.payloadencoder.bean.TrackingReportBean;
 import com.cisco.japan.as.uran.payloadencoder.constants.NodeElements;
 import com.cisco.japan.as.uran.payloadencoder.constants.ProtocolSummary;
 import com.cisco.japan.as.uran.payloadencoder.constants.UnknownStatus;
@@ -23,8 +26,9 @@ public class TrackingReport {
 	 * 
 	 * @param payloadObject JSONオブジェクト
 	 * @param hexStr        デコード用文字列
+	 * @param trBean TrackingReport格納用Bean
 	 */
-	public static void decodeTrackingReport(ObjectNode payloadObject, String hexStr) {
+	public static void decodeTrackingReport(ObjectNode payloadObject, String hexStr, TrackingReportBean trBean) {
 
 		// protocol詰め
 		CommonUtils.packingJson(payloadObject, NodeElements.PROTOCOL.getCode(),
@@ -57,8 +61,11 @@ public class TrackingReport {
 			CommonUtils.packingJson(payloadObject, NodeElements.BATTERY_CAPACITY.getCode(), baatteryCapacity);
 
 			// Date&Time変換
-			String DateTime = DateTimeDecoder.decodeDateTime(hexStr.substring(20, 28));
-			CommonUtils.packingJson(payloadObject, NodeElements.DATE_AND_TIME.getCode(), DateTime);
+			Date dateTime = DateTimeDecoder.decodeDateTime(hexStr.substring(20, 28));
+			// ISO8601準拠の形に整形
+			String isoDate = CommonUtils.toIsoDate(dateTime);
+			CommonUtils.packingJson(payloadObject, NodeElements.DATE_AND_TIME.getCode(), isoDate);
+			trBean.setDateTime(dateTime);
 
 		} else { // error
 
