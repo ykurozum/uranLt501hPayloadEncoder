@@ -3,7 +3,7 @@ package com.cisco.japan.as.uran.payloadencoder.constants;
 import com.cisco.japan.as.uran.payloadencoder.util.EnumDecodeUtil;
 
 public enum ProtocolSummary implements IEnumDecodable<String> {
-	
+
 	/** TrackingReport */
 	TRACKING_REPORT("0c1002"),
 	/** TrackingRport(Short) */
@@ -16,20 +16,18 @@ public enum ProtocolSummary implements IEnumDecodable<String> {
 	BEACON_REPORT_T("0c1302"),
 	/** BeaconReport:HelpReport */
 	BEACON_REPORT_H("0c0700");
-	
-    /**　コード値 */ 
+
+	/** コード値 */
 	private String code;
 
 	/** コードデコーダ */
-	private static final EnumDecodeUtil<String, ProtocolSummary> decoder = EnumDecodeUtil
-			.create(values());
+	private static final EnumDecodeUtil<String, ProtocolSummary> decoder = EnumDecodeUtil.create(values());
 
 	/**
 	 *
 	 * コンストラクタ
 	 *
-	 * @param code
-	 *            コード値
+	 * @param code コード値
 	 */
 	private ProtocolSummary(String code) {
 		this.code = code;
@@ -39,8 +37,7 @@ public enum ProtocolSummary implements IEnumDecodable<String> {
 	 *
 	 * コード値からコード定義を取得する
 	 *
-	 * @param code
-	 *            コード値
+	 * @param code コード値
 	 * @return コード定義
 	 */
 	public static ProtocolSummary decode(String code) {
@@ -56,5 +53,3 @@ public enum ProtocolSummary implements IEnumDecodable<String> {
 		return code;
 	}
 }
-
-
