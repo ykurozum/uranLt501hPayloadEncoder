@@ -1,5 +1,8 @@
 package com.cisco.japan.as.uran.payloadencoder.GlobalSat.lt501h;
 
+import java.util.List;
+
+import com.cisco.japan.as.uran.payloadencoder.EncodedPayload;
 import com.cisco.japan.as.uran.payloadencoder.PayloadEncoder;
 import com.cisco.japan.as.uran.payloadencoder.constants.NodeElements;
 import com.cisco.japan.as.uran.payloadencoder.constants.ProtocolSummary;
@@ -23,12 +26,12 @@ public class Lt501hPayloadEncoder implements PayloadEncoder {
 	 * @param payloadString 変換対象のJSon
 	 * @return 変換対象のJSon+変換後のJSon
 	 */
-	public JsonNode encode(String[] payloadString) throws Exception {
+	public List<JsonNode> encode(List<EncodedPayload> payloadString) throws Exception {
 
 		// ObjectMapperを作成
 		ObjectMapper mapper = new ObjectMapper();
 
-		ObjectNode node = (ObjectNode) mapper.readTree(payloadString[0]);
+		ObjectNode node = (ObjectNode) mapper.readTree(payloadString.get(0).getPayloadString());
 
 		// payloadStringからpayload_hexを取得
 		String hexStr = node.get("DevEUI_uplink").get("payload_hex").toString().replace("\"", "");
@@ -72,6 +75,6 @@ public class Lt501hPayloadEncoder implements PayloadEncoder {
 		}
 
 		node.set(NodeElements.PAYLOAD_JSON.getCode(), payloadObject);
-		return node;
+		return null;
 	}
 }
