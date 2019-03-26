@@ -40,7 +40,6 @@ public class Lt501hPayloadEncoder implements PayloadEncoder {
 
 		for (EncodedPayload payload : encodedPayloadList) {
 
-			ObjectNode root = mapper.createObjectNode();
 			ObjectNode payloadObject = mapper.createObjectNode();
 
 			// payloadStringからpayload_hexを取得
@@ -51,44 +50,44 @@ public class Lt501hPayloadEncoder implements PayloadEncoder {
 				// TrackingReport:peyload_hexを変換
 				TrackingReportBean trBean = new TrackingReportBean();
 				TrackingReport.decodeTrackingReport(payloadObject, hexStr, trBean);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, trBean.getDateTime());
+				decodeInfo = makeDecodeInfo(payloadObject, payload, trBean.getDateTime());
 
 			} else if (hexStr.startsWith(ProtocolSummary.TRACKING_REPORT_S.getCode())) { // protocol:8083
 
 				// TrackingRport(short):peyload_hexを変換
 				TrackingReportShort.decodeTrackingReportShort(payloadObject, hexStr);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, null);
+				decodeInfo = makeDecodeInfo(payloadObject, payload, null);
 
 			} else if (hexStr.startsWith(ProtocolSummary.HELP_REPORT.getCode())) { // protocol:0c0b00
 
 				// HelpReport:peyload_hexを変換
 				HelpRepaortBean hrBean = new HelpRepaortBean();
 				HelpReport.decodeHelpReport(payloadObject, hexStr, hrBean);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, hrBean.getDateTime());
+				decodeInfo = makeDecodeInfo(payloadObject, payload, hrBean.getDateTime());
 
 			} else if (hexStr.startsWith(ProtocolSummary.HELP_REPORT_S.getCode())) { // protocol:8001
 
 				// HelpReport(short):peyload_hexを変換
 				HelpReportShort.decodeHelpReportShort(payloadObject, hexStr);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, null);
+				decodeInfo = makeDecodeInfo(payloadObject, payload, null);
 
 			} else if (hexStr.startsWith(ProtocolSummary.BEACON_REPORT_T.getCode())) { // protocol:0c1302
 
 				// BeaconTrackingReport:peyload_hexを変換
 				BeaconTrackingReport.decodeBeaconTrackingReportd(payloadObject, hexStr);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, null);
+				decodeInfo = makeDecodeInfo(payloadObject, payload, null);
 
 			} else if (hexStr.startsWith(ProtocolSummary.BEACON_REPORT_H.getCode())) { // protocol:0c0700
 
 				// BeaconHelpReport:peyload_hexを変換
 				BeaconHelpReport.decodeBeaconHelpReport(payloadObject, hexStr);
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, null);
+				decodeInfo = makeDecodeInfo(payloadObject, payload, null);
 
 			} else { // unknwonProtocol
 
 				CommonUtils.packingJson(payloadObject, NodeElements.PROTOCOL.getCode(),
 						UnknownStatus.UNKNOWN_PROTOCOL.getCode());
-				decodeInfo = makeDecodeInfo(root, payloadObject, payload, null);
+				decodeInfo = makeDecodeInfo(payloadObject, payload, null);
 			}
 
 			decodeInfoList.add(decodeInfo);
@@ -101,18 +100,16 @@ public class Lt501hPayloadEncoder implements PayloadEncoder {
 	/**
 	 * デコード情報を詰め込む
 	 * 
-	 * @param root          Jsonのルート部分
 	 * @param payloadObject Jsonの中身
 	 * @param payload       Link_upTime&Payload_Hex
 	 * @param dateTime      Payload内の日時
 	 * @return decodeInfo デコード情報
 	 */
-	private static DecodedPayload makeDecodeInfo(ObjectNode root, ObjectNode payloadObject, EncodedPayload payload,
+	private static DecodedPayload makeDecodeInfo(ObjectNode payloadObject, EncodedPayload payload,
 			Date payloadDateTime) {
 
-		root.set(NodeElements.PAYLOAD_JSON.getCode(), payloadObject);
 		DecodedPayload decodeInfo = new DecodedPayload(payload.getTime(), payloadDateTime, payload.getPayloadString(),
-				root, payload.getDeviceIdentifiyer());
+				payloadObject, payload.getDeviceIdentifiyer());
 
 		return decodeInfo;
 
