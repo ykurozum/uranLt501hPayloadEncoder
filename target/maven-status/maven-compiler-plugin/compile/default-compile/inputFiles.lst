@@ -9,6 +9,7 @@ C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\AlarmType.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\decoder\CoordinateDecoder.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\ReportType.java
+C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\bean\TrackingReportBean.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\summary\BeaconTrackingReport.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\BeaconId.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\UnknownStatus.java
@@ -26,6 +27,8 @@ C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\summary\TrackingReportShort.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\IEnumDecodable.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\GlobalSat\lt501h\Lt501hPayloadEncoder.java
+C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\bean\HelpRepaortBean.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\IEnumResolvable.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\decoder\BeaconIdDecoder.java
+C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\bean\BeaconReportBean.java
 C:\Users\ykurozum\git\uranLt501hPayloadEncoder\src\main\java\com\cisco\japan\as\uran\payloadencoder\constants\NodeElements.java
